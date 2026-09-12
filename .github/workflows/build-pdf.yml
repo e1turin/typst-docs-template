@@ -1,0 +1,28 @@
+name: Build PDF
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Build PDF
+        run: typst compile src/main.typ article.pdf
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: article-pdf
+          path: article.pdf
+          if-no-files-found: error
