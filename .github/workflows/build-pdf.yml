@@ -1,4 +1,4 @@
-name: Build PDF
+name: Build & Release PDF
 
 on:
   workflow_dispatch:
@@ -9,8 +9,9 @@ on:
         default: src/main.typ
         type: string
       output:
-        description: Name of the generated PDF file
+        description: Name of the generated file
         required: true
+        default: document.pdf
         type: string
       release_tag:
         description: Tag for the GitHub release that will contain the PDF
