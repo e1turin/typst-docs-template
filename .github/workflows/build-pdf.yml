@@ -8,6 +8,10 @@ on:
         required: true
         default: src/main.typ
         type: string
+      output:
+        description: Name of the generated PDF file
+        required: true
+        type: string
       release_tag:
         description: Tag for the GitHub release that will contain the PDF
         required: true
@@ -30,13 +34,14 @@ jobs:
       - name: Build PDF
         env:
           TARGET_DOCUMENT: ${{ inputs.document }}
-        run: typst compile "$TARGET_DOCUMENT" article.pdf
+          TARGET_OUTPUT: ${{ inputs.output }}
+        run: typst compile "$TARGET_DOCUMENT" "$TARGET_OUTPUT"
 
       - name: Upload PDF as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: article-pdf
-          path: article.pdf
+          name: compiled-pdf
+          path: ${{ inputs.output }}
           if-no-files-found: error
 
       - name: Publish PDF release asset
@@ -44,5 +49,5 @@ jobs:
         with:
           tag_name: ${{ inputs.release_tag }}
           name: PDF ${{ inputs.release_tag }}
-          files: article.pdf
+          files: ${{ inputs.output }}
           generate_release_notes: true
