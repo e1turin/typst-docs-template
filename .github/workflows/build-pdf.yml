@@ -8,9 +8,13 @@ on:
         required: true
         default: src/main.typ
         type: string
+      release_tag:
+        description: Tag for the GitHub release that will contain the PDF
+        required: true
+        type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -28,9 +32,17 @@ jobs:
           TARGET_DOCUMENT: ${{ inputs.document }}
         run: typst compile "$TARGET_DOCUMENT" article.pdf
 
-      - name: Upload PDF
+      - name: Upload PDF as workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: article-pdf
           path: article.pdf
           if-no-files-found: error
+
+      - name: Publish PDF release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          name: PDF ${{ inputs.release_tag }}
+          files: article.pdf
+          generate_release_notes: true
