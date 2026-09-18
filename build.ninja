@@ -12,12 +12,12 @@ rule watch
   description = WATCH $src -> $dest
   pool = console
 
-build article: compile
+build doc: compile
   src = src/main.typ
-  dest = article.pdf
+  dest = document.pdf
 
 build dev: watch
   src = src/main.typ
-  dest = article-dev.pdf
+  dest = document-dev.pdf
 
-default article
+default doc

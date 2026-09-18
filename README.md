@@ -2,12 +2,12 @@
 
 To compile article's PDF use Ninja:
 ```sh
-ninja article
+ninja doc
 ```
 
-Or manually execute command `typst compile src/main.typ article.pdf`.
+Or manually execute command `typst compile src/main.typ document.pdf`.
 
-Note about development workflow: [dev.md](./misc/dev.md)
+Note about development workflow: [dev.md](./docs/dev.md)
 
 ## Git workflow
 
@@ -18,3 +18,9 @@ Use this repository as a template, create a working branch, and commit your Typs
 - the GitHub Release tag that should contain the PDF.
 
 The workflow keeps the PDF as a workflow artifact and publishes it as an asset on the specified GitHub Release.
+
+## Referencies
+
+Uses template `@preview/modern-g7-32:0.2.0` for article document.
+
+Uses template `@preview/innovative-skoltech-slides` for presentation slides document.
