@@ -2,12 +2,12 @@
 
 To compile article's PDF use Ninja:
 ```sh
-ninja article
+ninja doc
 ```
 
-Or manually execute command `typst compile src/main.typ article.pdf`.
+Or manually execute command `typst compile src/main.typ document.pdf`.
 
-Note about development workflow: [dev.md](./misc/dev.md)
+Note about development workflow: [dev.md](./docs/dev.md)
 
 ## Git workflow
 

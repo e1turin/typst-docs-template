@@ -1,6 +1,6 @@
 .DS_Store
 *.pdf
-!article.pdf
+!document.pdf
 src/images/
 .ninja_log
 .ninja_lock
